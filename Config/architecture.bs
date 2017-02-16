@@ -1,0 +1,30 @@
+{
+    FeaturesDim = 2
+    HiddenDim = 3
+    ExpectedDim = 1
+
+    model(features) = {
+        W0 = ParameterTensor {(HiddenDim:FeaturesDim)}
+        b0 = ParameterTensor {HiddenDim}
+        W1 = ParameterTensor {(ExpectedDim:HiddenDim)}
+        b1 = ParameterTensor {ExpectedDim}
+
+        #model formula
+        r = W0 * features + b0
+        z = W1 * r + b1
+    }.z
+
+    Features = Input {FeaturesDim}
+    Expected = Input {ExpectedDim}
+
+    # model using actual features
+    z = model(Features)
+    errs = SquareError (Expected,z)
+
+    # define cntk variables
+    featureNodes = (Features)
+    inputNodes = (Expected)
+    evaluationNodes = (errs)
+    criterionNodes = (errs)
+    outputNodes = (z)
+}

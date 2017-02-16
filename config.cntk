@@ -1,0 +1,38 @@
+rootDir = "./";
+configDir = "$rootDir$/Config"
+dataDir = "$rootDir$/Data"
+outputDir = "$rootDir$/Output"
+modelDir = "$rootDir$/Models"
+
+command = Train
+
+Train = [
+    action = "train"
+    modelPath = "$modelDir$/model.dnn"
+    BrainScriptNetworkBuilder = (new ComputationNetwork
+        include "$configDir$/architecture.bs"
+    )
+
+    SGD = [
+        modelPath = "$modelDir$/model.dnn"
+        epochSize = 500
+        minibatchSize = 10
+        learningRatesPerMB = 0.1
+        maxEpochs = 30
+    ]
+
+    reader = [
+        readerType = "CNTKTextFormatReader"
+        file = "$dataDir$/training-set.txt"
+        input = [
+            Features = [
+                dim = 2
+                format = "dense"
+            ]
+            Expected = [
+                dim = 1
+                format = "dense"
+            ]
+        ]
+    ]
+]
