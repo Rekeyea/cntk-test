@@ -14,17 +14,17 @@
         z = W1 * r + b1
     }.z
 
-    Features = Input {FeaturesDim}
-    Expected = Input {ExpectedDim}
+    features = Input {FeaturesDim}
+    expected = Input {ExpectedDim}
 
     # model using actual features
-    z = model(Features)
-    errs = SquareError (Expected,z)
+    z = model(features)
+    errs = SquareError (expected,z)
 
     # define cntk variables
-    featureNodes = (Features)
-    inputNodes = (Expected)
-    evaluationNodes = (errs)
+    featureNodes = (features)
+    inputNodes = (expected)
     criterionNodes = (errs)
+    evaluationNodes = (errs)
     outputNodes = (z)
 }

@@ -4,6 +4,7 @@ dataDir = "$rootDir$/Data"
 outputDir = "$rootDir$/Output"
 modelDir = "$rootDir$/Models"
 
+traceLevel = 2
 command = Train
 
 Train = [
@@ -25,11 +26,11 @@ Train = [
         readerType = "CNTKTextFormatReader"
         file = "$dataDir$/training-set.txt"
         input = [
-            Features = [
+            features = [
                 dim = 2
                 format = "dense"
             ]
-            Expected = [
+            expected = [
                 dim = 1
                 format = "dense"
             ]

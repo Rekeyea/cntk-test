@@ -31,7 +31,7 @@ for (let i = 0; i < sample; i++) {
     objArray[i] = {a,b,c};
 }
 
-const strArray = objArray.map(v => `|Features ${v.a} ${v.b} |Expected ${v.c}`);
+const strArray = objArray.map(v => `|features ${v.a} ${v.b} |expected ${v.c}`);
 fs.writeFile("training-set.txt",strArray.join("\r\n"),err=>{
     if(err){
         console.error(err);
